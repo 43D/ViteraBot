@@ -1,14 +1,15 @@
 import threading
+from editor import editor as ed
+from uploader import uploader as up
 
-running = True
+editorObject = ed.Editor()
+uploaderObject = up.Uploader()
 
 def editor():
-    while(running):
-        print("thread")
+    editorObject.run()
 
 def uploader():
-    while(running):
-        print("thread")
+    uploaderObject.run()
 
 thread1 = threading.Thread(target=editor, args=())
 thread2 = threading.Thread(target=uploader, args=())
@@ -21,7 +22,8 @@ try:
         pass
 except KeyboardInterrupt:
     print("Recebido sinal de interrupção. Parando o programa no proximo clico...")
-    running = False
+    editorObject.done()
+    uploaderObject.done()
 
 thread1.join()
 thread2.join()
