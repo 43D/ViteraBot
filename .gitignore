@@ -160,3 +160,6 @@ cython_debug/
 #.idea/
 
 viteiraBot.db
+config.json
+uploaderexample.py
+nerd.png
