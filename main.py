@@ -1,9 +1,10 @@
 import threading
 from editor import editor as ed
-from uploader import uploader as up
+from uploader import uploaderManager as up
 
+CONFIG = "config.json"
 editorObject = ed.Editor()
-uploaderObject = up.Uploader()
+uploaderObject = up.UploaderManager(CONFIG)
 
 def editor():
     editorObject.run()

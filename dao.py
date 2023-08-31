@@ -25,7 +25,17 @@ class Dao:
         #check and save database folders local
         print("teste")
     
-    
+    def getConfig(self, config):
+        try:
+            with open(config, 'r') as arquivo:
+                data_dict = json.load(arquivo)
+            return data_dict
+        except FileNotFoundError:
+            print(f"O arquivo '{config}' não foi encontrado.")
+            return None
+        except json.JSONDecodeError as e:
+            print(f"Erro ao decodificar JSON no arquivo '{config}': {e}")
+            return None
 
     def getConn(self):
         return sqlite3.connect(self.db)
