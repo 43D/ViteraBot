@@ -103,5 +103,16 @@ class CreateTable:
                 hash TEXT
             )
         ''')
+        
+        # Crie a tabela 'post'
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS post (
+                id INTEGER PRIMARY KEY,
+                id_image INTEGER,
+                id_post INTEGER,
+                published BOOLEAN,
+                FOREIGN KEY (id_image) REFERENCES image (id)
+            )
+        ''')
         # Commit (salve) as alterações
         self.conn.commit()
