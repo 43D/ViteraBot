@@ -12,7 +12,8 @@ class DaoConfig:
                 "app_id":"",
                 "app_secret":"",
                 "access_token":"",
-                "time_post": 180
+                "time_post": 180,
+                "discord_webhook":""
             }
             with open('config.json', 'w') as config_file:
                 json.dump(config_data, config_file, indent=4)

@@ -10,7 +10,7 @@ def editor():
     editorObject.run()
 
 def uploader():
-    uploaderObject.run()
+    uploaderObject.runUploader()
 
 thread1 = threading.Thread(target=editor, args=())
 thread2 = threading.Thread(target=uploader, args=())

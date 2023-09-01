@@ -1,15 +1,23 @@
-from viterabot.controller.uploader.uploader import Uploader
+from viterabot.controller.uploader.webhook.discord import Discord
 from viterabot.controller.uploader.graph.graph import Graph
 from viterabot.dao.daoConfig import DaoConfig
 
 class UploaderManager():
     def __init__(self, config: str) -> None:
-        daoConfig = DaoConfig(config)
-        graph = Graph(daoConfig.getConfig())
-        self.uploader = Uploader(graph, daoConfig)
+        self.daoConfig = DaoConfig(config)
+        self.graph = Graph(self.daoConfig.getConfig())
+        self.discord = Discord(self.daoConfig.getConfig())
 
-    def run(self) -> None:
-        self.uploader.sendNextImage()
+    def _getNextPost(self) -> None:
+        ""
+        # pegar filename via daoImage.py
+
+    def _sendNextImage(self, message: str, filename: str) -> None:
+        self.graph.uploadImage(message, filename)
+        self.discord.uploadImage(message, filename)
+
+    def runUploader(self) -> None:
+        self._getNextPost()
 
     def done(self) -> None:
-        self.uploader.done()
+        ""
