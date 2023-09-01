@@ -1,7 +1,7 @@
 import time
-from viteirabot.model.template import Template
-from viteirabot.dao.daoEditor import DaoEditor
-from viteirabot.dao.daoTemplate import DaoTemplate
+from viteirabot.entity.template import Template
+from viteirabot.dao.daoMaster import DaoMaster
+from viteirabot.dao.model.modelTemplate import DaoTemplate
 
 class Editor():
     def __init__(self, ):
@@ -13,7 +13,7 @@ class Editor():
         coordinates_lists = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
         template = Template(0, path_image, tags, coordinates_lists)
-        dao = DaoEditor()
+        dao = DaoMaster()
         daoTemplate = DaoTemplate(dao)
         daoTemplate.func_example_save(template)
 

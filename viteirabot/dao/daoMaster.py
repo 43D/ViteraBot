@@ -2,12 +2,13 @@ import sqlite3
 import os
 import json
 
-class Dao:
+class DaoMaster:
     def __init__(self):
         self.db = "viteiraBot.db"
-        sqlite3.connect(self.db)
+        self.conn = sqlite3.connect(self.db)
+        self.cursor = self.conn.cursor()
         self._folder()
-
+        
     def _checkConfig(self):
         if not os.path.exists('config.json'):
             config_data = {
@@ -24,18 +25,12 @@ class Dao:
         #check folder exits
         #check and save database folders local
         print("teste")
-    
-    def getConfig(self, config):
-        try:
-            with open(config, 'r') as arquivo:
-                data_dict = json.load(arquivo)
-            return data_dict
-        except FileNotFoundError:
-            print(f"O arquivo '{config}' não foi encontrado.")
-            return None
-        except json.JSONDecodeError as e:
-            print(f"Erro ao decodificar JSON no arquivo '{config}': {e}")
-            return None
 
-    def getConn(self):
-        return sqlite3.connect(self.db)
+    def getCursor(self):
+        return self.cursor
+    
+    def close(self):
+        self.cursor.close()
+        self.conn.close()
+    
+        
