@@ -2,11 +2,11 @@ import os
 import json
 
 class DaoConfig:
-    def __init__(self, CONFIG: str):
+    def __init__(self, CONFIG: str) -> None:
         self.CONFIG = CONFIG
         self._folder()
         
-    def _checkConfig(self):
+    def _checkConfig(self) -> None:
         if not os.path.exists('config.json'):
             config_data = {
                 "app_id":"",
@@ -17,13 +17,13 @@ class DaoConfig:
             with open('config.json', 'w') as config_file:
                 json.dump(config_data, config_file, indent=4)
 
-    def _folder(self):
+    def _folder(self) -> None:
         self._checkConfig()
         #check folder exits
         #check and save database folders local
         print("teste")
 
-    def getConfig(self):
+    def getConfig(self) -> dict:
         try:
             with open(self.CONFIG, 'r') as arquivo:
                 data_dict = json.load(arquivo)

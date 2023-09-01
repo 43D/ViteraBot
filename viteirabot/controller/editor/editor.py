@@ -4,20 +4,19 @@ from viteirabot.dao.daoMaster import DaoMaster
 from viteirabot.dao.model.modelTemplate import DaoTemplate
 
 class Editor():
-    def __init__(self, ):
+    def __init__(self, ) -> None:
         self.runnig = True
 
         #exemplo de injeção indem cagada em python
         path_image = "caminho/para/imagem.jpg"
-        tags = ["tag1", "tag2", "tag3"]
-        coordinates_lists = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        title = "tile www"
 
-        template = Template(0, path_image, tags, coordinates_lists)
+        template = Template(0, path_image, title)
         dao = DaoMaster()
         daoTemplate = DaoTemplate(dao)
         daoTemplate.func_example_save(template)
 
-    def run(self):
+    def run(self) -> None:
         while(self.runnig):
             # executa verificador na controll, ele verifica se as condições de criar
             # e só para quando for false ele para
@@ -29,5 +28,5 @@ class Editor():
             #esse sleep vai definir de quanto em quanto o verificador será usado
             time.sleep(1)
 
-    def done(self):
+    def done(self) -> None:
         self.runnig = False

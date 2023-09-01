@@ -1,22 +1,23 @@
 import sqlite3
 
 class DaoMaster:
-    def __init__(self):
+    def __init__(self) -> None:
         self.db = "viteiraBot.db"
         self.conn = sqlite3.connect(self.db)
         self.cursor = self.conn.cursor()
+        print(f"cursor {self.cursor}\nconn {self.conn}")
         self._create_tables()
 
-    def _create_tables(self):
+    def _create_tables(self) -> None:
         CreateTable(self)
 
-    def getConn(self):
+    def getConn(self) -> sqlite3.Connection:
         return self.conn
 
-    def getCursor(self):
+    def getCursor(self) -> sqlite3.Cursor:
         return self.cursor
     
-    def close(self):
+    def close(self) -> None:
         self.cursor.close()
         self.conn.close()
     
@@ -26,7 +27,7 @@ class CreateTable:
         self.cursor = dao.getCursor()
         self._execute()
 
-    def _execute(self):
+    def _execute(self) -> None:
         # Crie a tabela 'template'
         self.cursor.execute('''
             CREATE TABLE IF NOT EXISTS template (

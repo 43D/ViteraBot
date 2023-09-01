@@ -1,8 +1,9 @@
 class Post:
-    def __init__(self, id, path_image, text):
+    def __init__(self, id, id_image, id_post, published: bool) -> None:
         self.id = id
-        self.path_image = path_image
-        self.text = text
+        self.id_image = id_image
+        self.id_post = id_post
+        self.published = published
 
-    def __str__(self):
-        return f"ID: {self.id}\nPath da Imagem: {self.path_image}\nTexto: {self.text}"
+    def __str__(self) -> None:
+        return f"ID: {self.id}\nPath da Imagem: {self.id_image}\nid_posto: {self.id_post}\npublished: {self.published}"

@@ -1,7 +1,7 @@
 from pyfacebook import GraphAPI
 
 class Graph:
-    def __init__(self, config: dict):
+    def __init__(self, config: dict) -> None:
         self.app_id = config["app_id"]
         self.app_secret = config["app_secret"]
         self.access_token = config["access_token"]
@@ -12,7 +12,7 @@ class Graph:
         )
         print(self.api)
 
-    def uploadImage(self, message, filename):
+    def uploadImage(self, message: str, filename: str) -> None:
         self.api.post_object(object_id="me", connection="photos",
                 data={"message": message, "published": True},
                 files={"image": (filename, open(filename,'rb'), 'image/png')}

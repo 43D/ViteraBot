@@ -1,10 +1,10 @@
 class Image:
 
-    def __init__(self, id, path_image, tags, title):
+    def __init__(self, id: int, src_path: str, title: str, has: str) -> None:
         self.id = id
-        self.path_image = path_image
-        self.tags = tags
+        self.src_path = src_path
+        self.hash = hash
         self.title = title
 
-    def __str__(self):
-        return f"Título: {self.title}\nPath da Imagem: {self.path_image}\nTags: {self.tags}"
+    def __str__(self) -> None:
+        return f"Título: {self.title}\nPath da Imagem: {self.src_path}\nhash: {self.hash}"
