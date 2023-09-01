@@ -1,7 +1,7 @@
 import time
-from editor.model.template import Template
-from editor.dao.daoEditor import DaoEditor
-from editor.dao.daoTemplate import DaoTemplate
+from viteirabot.model.template import Template
+from viteirabot.dao.daoEditor import DaoEditor
+from viteirabot.dao.daoTemplate import DaoTemplate
 
 class Editor():
     def __init__(self, ):

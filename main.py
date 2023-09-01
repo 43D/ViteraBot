@@ -1,6 +1,6 @@
 import threading
-from editor import editor as ed
-from uploader import uploaderManager as up
+from viteirabot.controller.editor import editor as ed
+from viteirabot.controller.uploader import uploaderManager as up
 
 CONFIG = "config.json"
 editorObject = ed.Editor()

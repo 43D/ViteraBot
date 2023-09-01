@@ -1,7 +1,7 @@
 import time
-from uploader.controller.uploader import Uploader
-from uploader.controller.graph import Graph
-from uploader.dao.daoConfig import DaoConfig
+from viteirabot.controller.uploader.uploader import Uploader
+from viteirabot.controller.uploader.graph.graph import Graph
+from viteirabot.dao.daoConfig import DaoConfig
 
 class UploaderManager():
     def __init__(self, config: str):
