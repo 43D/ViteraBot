@@ -1,10 +1,19 @@
 import threading
-from viterabot.controller.editor import editor as ed
-from viterabot.controller.uploader import uploaderManager as up
+from viterabot.controller.editor.editor import Editor
+from viterabot.controller.uploader.uploaderManager import UploaderManager
+from viterabot.controller.uploader.webhook.discord import Discord
+from viterabot.controller.uploader.graph.graph import Graph
+from viterabot.controller.uploader.webhook.discord import Discord
+from viterabot.dao.daoConfig import DaoConfig
 
 CONFIG = "config.json"
-editorObject = ed.Editor()
-uploaderObject = up.UploaderManager(CONFIG)
+
+daoConfig = DaoConfig(CONFIG)
+graph = Graph(daoConfig.getConfig())
+discord = Discord(daoConfig.getConfig())
+uploaderObject = UploaderManager(daoConfig, graph, discord)
+
+editorObject = Editor()
 
 def editor():
     editorObject.run()

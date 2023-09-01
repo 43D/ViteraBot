@@ -22,7 +22,6 @@ class DaoConfig:
         self._checkConfig()
         #check folder exits
         #check and save database folders local
-        print("teste")
 
     def getConfig(self) -> dict:
         try:

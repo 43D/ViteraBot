@@ -1,12 +1,11 @@
-from viterabot.controller.uploader.webhook.discord import Discord
-from viterabot.controller.uploader.graph.graph import Graph
+from viterabot.controller.uploader.iUploader import iUploader
 from viterabot.dao.daoConfig import DaoConfig
 
 class UploaderManager():
-    def __init__(self, config: str) -> None:
-        self.daoConfig = DaoConfig(config)
-        self.graph = Graph(self.daoConfig.getConfig())
-        self.discord = Discord(self.daoConfig.getConfig())
+    def __init__(self, dao: DaoConfig, graph: iUploader, discord: iUploader) -> None:
+        self.daoConfig = dao
+        self.graph = graph
+        self.discord = discord
 
     def _getNextPost(self) -> None:
         ""

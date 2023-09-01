@@ -1,7 +1,8 @@
 
 from discord_webhook import DiscordWebhook, DiscordEmbed
+from viterabot.controller.uploader.iUploader import iUploader
 
-class Discord:
+class Discord(iUploader):
     def __init__(self, config: dict) -> None:
         self.url = config["discord_webhook"]
         self.webhook = DiscordWebhook(url=self.url, username="ViteraBot",
@@ -9,6 +10,7 @@ class Discord:
 
     def _send(self) -> None:
         self.webhook.execute()
+        print("Discord is uploaded")
 
     def uploadImage(self, message: str, filename: str) -> None:
         embed = DiscordEmbed(title="ViteraBot 3", description=message, color="03b2f8")

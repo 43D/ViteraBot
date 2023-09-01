@@ -5,7 +5,6 @@ class DaoMaster:
         self.db = "viteiraBot.db"
         self.conn = sqlite3.connect(self.db)
         self.cursor = self.conn.cursor()
-        print(f"cursor {self.cursor}\nconn {self.conn}")
         self._create_tables()
 
     def _create_tables(self) -> None:
