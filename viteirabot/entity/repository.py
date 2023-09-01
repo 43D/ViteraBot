@@ -1,4 +1,4 @@
-class Template:
+class Repository:
     def __init__(self, id: int, src_path: str, title: str) -> None:
         self.id = id
         self.src_path = src_path

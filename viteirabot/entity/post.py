@@ -1,5 +1,5 @@
 class Post:
-    def __init__(self, id, id_image, id_post, published: bool) -> None:
+    def __init__(self, id: int, id_image: int, id_post: int, published: bool) -> None:
         self.id = id
         self.id_image = id_image
         self.id_post = id_post
