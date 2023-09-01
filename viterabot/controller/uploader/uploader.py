@@ -1,6 +1,6 @@
 import time
-from viteirabot.controller.uploader.graph.graph import Graph
-from viteirabot.dao.daoConfig import DaoConfig
+from viterabot.controller.uploader.graph.graph import Graph
+from viterabot.dao.daoConfig import DaoConfig
 
 class Uploader:
     def __init__(self, graph: Graph, daoConfig: DaoConfig) -> None:

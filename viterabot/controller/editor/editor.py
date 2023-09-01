@@ -1,7 +1,7 @@
 import time
-from viteirabot.entity.template import Template
-from viteirabot.dao.daoMaster import DaoMaster
-from viteirabot.dao.model.modelTemplate import DaoTemplate
+from viterabot.entity.template import Template
+from viterabot.dao.daoMaster import DaoMaster
+from viterabot.dao.model.modelTemplate import DaoTemplate
 
 class Editor():
     def __init__(self, ) -> None:

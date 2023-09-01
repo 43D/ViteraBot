@@ -1,6 +1,6 @@
 import threading
-from viteirabot.controller.editor import editor as ed
-from viteirabot.controller.uploader import uploaderManager as up
+from viterabot.controller.editor import editor as ed
+from viterabot.controller.uploader import uploaderManager as up
 
 CONFIG = "config.json"
 editorObject = ed.Editor()

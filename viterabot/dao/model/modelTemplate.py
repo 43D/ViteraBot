@@ -1,5 +1,5 @@
-from viteirabot.dao.daoMaster import DaoMaster
-from viteirabot.entity.template import Template
+from viterabot.dao.daoMaster import DaoMaster
+from viterabot.entity.template import Template
 
 class DaoTemplate:
     def __init__(self, dao: DaoMaster) -> None:

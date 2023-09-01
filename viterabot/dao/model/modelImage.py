@@ -1,5 +1,5 @@
-from viteirabot.dao.daoMaster import DaoMaster
-from viteirabot.entity.image import Image
+from viterabot.dao.daoMaster import DaoMaster
+from viterabot.entity.image import Image
 
 class DaoImage:
     def __init__(self, dao: DaoMaster) -> None:
