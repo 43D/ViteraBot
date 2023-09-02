@@ -1,9 +1,9 @@
 import time
 from viterabot.controller.uploader.iUploader import iUploader
 from viterabot.dao.daoConfig import DaoConfig
-from viterabot.observer.interface_observer_action import ObserverActionInterface
+from viterabot.observer.iObserverAction import iObserverAction
 
-class UploaderManager(ObserverActionInterface):
+class UploaderManager(iObserverAction):
     def __init__(self, dao: DaoConfig, graph: iUploader, discord: iUploader) -> None:
         self.daoConfig = dao
         self.graph = graph
@@ -24,7 +24,7 @@ class UploaderManager(ObserverActionInterface):
             self._getNextPost()
             time.sleep(self.time)
 
-    def do_action(self, message: str) -> None:
+    def doAction(self, message: str) -> None:
         if message=="done":
             self.done()
 

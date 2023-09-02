@@ -1,6 +1,6 @@
 class Observer:
-    def __init__(self, action_class):
-        self._action_class = action_class
+    def __init__(self, objectClass) -> None:
+        self._objectClass = objectClass
 
-    def update(self, message):
-        self._action_class.do_action(message)
+    def update(self, message: str) -> None:
+        self._objectClass.doAction(message)

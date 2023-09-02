@@ -5,32 +5,32 @@ from viterabot.controller.generator.iGenerator import iGenerator
 
 class GeneratorLero(iGenerator):
     def __init__(self, filename) -> None:
-        self.filename = filename
+        self._filename = filename
         self._openFile()
-        self.pairs = self._makePairs()
+        self._pairs = self._makePairs()
         self._dictGenerator()
 
     def _openFile(self) -> None:
-        self.book = open(self.filename, encoding='utf8').read()
-        self.corpus = self.book.split()
+        self._book = open(self._filename, encoding='utf8').read()
+        self._corpus = self._book.split()
 
     def _makePairs(self) -> Iterator[str]:
-        for i in range(len(self.corpus)-1):
-            yield (self.corpus[i], self.corpus[i+1])
+        for i in range(len(self._corpus)-1):
+            yield (self._corpus[i], self._corpus[i+1])
     
     def _dictGenerator(self):
-        self.wordDict = {}
-        for word1, word2 in self.pairs:
-            if word1 in self.wordDict.keys():
-                self.wordDict[word1].append(word2)
+        self._wordDict = {}
+        for word1, word2 in self._pairs:
+            if word1 in self._wordDict.keys():
+                self._wordDict[word1].append(word2)
             else:
-                self.wordDict[word1] = [word2]
+                self._wordDict[word1] = [word2]
 
     def _firstWord(self):
-        firstWord = np.random.choice(self.corpus)
+        firstWord = np.random.choice(self._corpus)
 
         while firstWord.islower():
-            firstWord = np.random.choice(self.corpus)
+            firstWord = np.random.choice(self._corpus)
         return firstWord
 
     def generateText(self) -> str:
@@ -38,7 +38,6 @@ class GeneratorLero(iGenerator):
         text = [self._firstWord()]
 
         for i in range(numbersWords):
-            text.append(np.random.choice(self.wordDict[text[-1]]))
+            text.append(np.random.choice(self._wordDict[text[-1]]))
 
         return " ".join(text)
-    
