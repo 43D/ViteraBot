@@ -2,8 +2,9 @@ import time
 from viterabot.entity.template import Template
 from viterabot.dao.daoMaster import DaoMaster
 from viterabot.dao.model.modelTemplate import DaoTemplate
+from viterabot.observer.interface_observer_action import ObserverActionInterface
 
-class Editor():
+class Editor(ObserverActionInterface):
     def __init__(self, ) -> None:
         self.runnig = True
 
@@ -27,6 +28,10 @@ class Editor():
 
             #esse sleep vai definir de quanto em quanto o verificador será usado
             time.sleep(1)
+
+    def do_action(self, message: str) -> None:
+        if message=="done":
+            self.done()
 
     def done(self) -> None:
         self.runnig = False
