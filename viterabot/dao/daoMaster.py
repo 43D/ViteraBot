@@ -42,8 +42,10 @@ class CreateTable:
                 x_start REAL,
                 y_start REAL,
                 x_end REAL,
-                y_end REAL
-                z REAL
+                y_end REAL,
+                tilt REAL,
+                rotation REAL,
+                type TEXT
             )
         ''')
 
