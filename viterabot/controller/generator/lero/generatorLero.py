@@ -40,5 +40,5 @@ class GeneratorLero(iGenerator):
         for i in range(numbersWords):
             text.append(np.random.choice(self.wordDict[text[-1]]))
 
-        return "".join(text)
+        return " ".join(text)
     
