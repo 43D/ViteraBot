@@ -31,8 +31,7 @@ class CreateTable:
         self.cursor.execute('''
             CREATE TABLE IF NOT EXISTS template (
                 id INTEGER PRIMARY KEY,
-                src_path TEXT,
-                title TEXT
+                src_path TEXT
             )
         ''')
 
@@ -44,6 +43,7 @@ class CreateTable:
                 y_start REAL,
                 x_end REAL,
                 y_end REAL
+                z REAL
             )
         ''')
 
@@ -57,40 +57,12 @@ class CreateTable:
             )
         ''')
 
-        # Crie a tabela 'tags'
-        self.cursor.execute('''
-            CREATE TABLE IF NOT EXISTS tags (
-                id INTEGER PRIMARY KEY,
-                tag TEXT
-            )
-        ''')
-
-        # Crie a tabela 'template_to_tag' com chaves estrangeiras
-        self.cursor.execute('''
-            CREATE TABLE IF NOT EXISTS template_to_tag (
-                id_template INTEGER,
-                id_tag INTEGER,
-                FOREIGN KEY (id_template) REFERENCES template (id),
-                FOREIGN KEY (id_tag) REFERENCES tags (id)
-            )
-        ''')
-
         # Crie a tabela 'repository'
         self.cursor.execute('''
             CREATE TABLE IF NOT EXISTS repository (
                 id INTEGER PRIMARY KEY,
                 src_path TEXT,
                 title TEXT
-            )
-        ''')
-
-        # Crie a tabela 'repository_to_tag' com chaves estrangeiras
-        self.cursor.execute('''
-            CREATE TABLE IF NOT EXISTS repository_to_tag (
-                id_repository INTEGER,
-                id_tag INTEGER,
-                FOREIGN KEY (id_repository) REFERENCES repository (id),
-                FOREIGN KEY (id_tag) REFERENCES tag (id)
             )
         ''')
 
@@ -109,7 +81,8 @@ class CreateTable:
             CREATE TABLE IF NOT EXISTS post (
                 id INTEGER PRIMARY KEY,
                 id_image INTEGER,
-                id_post INTEGER,
+                id_facebook INTEGER,
+                discord BOOLEAN,
                 published BOOLEAN,
                 FOREIGN KEY (id_image) REFERENCES image (id)
             )
