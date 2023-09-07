@@ -39,6 +39,9 @@ class ViteraBot:
         self.subjectDone.attach(observerRm)
         rm.runRegister()
     
+    def _keyboardSetup(self):
+        keyboard.on_press_key("p", lambda _:self.eventRegister.set())
+
     def _startThead(self, target=None, args=()) -> None:
         thread = threading.Thread(target=target, args=args)
         self.threadPool.append(thread)
@@ -48,6 +51,7 @@ class ViteraBot:
         self._startThead(self._editor)
         self._startThead(self._uploader)
         self._startThead(self._register)
+        self._keyboardSetup()
 
     def done(self) -> None:
         self.subjectDone.notify("done")
