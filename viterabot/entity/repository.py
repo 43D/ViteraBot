@@ -1,8 +1,8 @@
-class Repository:
-    def __init__(self, id: int, src_path: str, title: str) -> None:
-        self.id = id
-        self.src_path = src_path
-        self.title = title
+from dataclasses import dataclass
 
-    def __str__(self) -> None:
-        return f"Path da Imagem: {self.src_path}\ntitle: {self.title}"
+
+@dataclass(kw_only=True, slots=True, frozen=False)
+class Repository:
+    id: int
+    src_path: str
+    title: str

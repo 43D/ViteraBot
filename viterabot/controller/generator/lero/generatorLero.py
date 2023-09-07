@@ -34,7 +34,7 @@ class GeneratorLero(iGenerator):
         return firstWord
 
     def generateText(self) -> str:
-        numbersWords = random.choice( range(14, 35) )
+        numbersWords = random.choice( range(14, 28) )
         text = [self._firstWord()]
 
         for i in range(numbersWords):

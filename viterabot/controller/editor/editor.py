@@ -12,7 +12,7 @@ class Editor(iObserverAction):
         path_image = "caminho/para/imagem.jpg"
         title = "tile www"
 
-        template = Template(0, path_image, title)
+        template = Template(id=0, src_path=path_image)
         dao = DaoMaster()
         daoTemplate = DaoTemplate(dao)
         daoTemplate.func_example_save(template)
