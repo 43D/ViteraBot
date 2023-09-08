@@ -1,5 +1,7 @@
-import threading
 import keyboard
+import os
+import threading
+from viterabot.controller.display import Display
 from viterabot.controller.editor.editor import Editor
 from viterabot.controller.uploaderManager import UploaderManager
 from viterabot.controller.uploader.webhook.discord import Discord
@@ -12,11 +14,12 @@ from viterabot.observer.subject import Subject
 
 
 class ViteraBot:
-    def __init__(self, subjectDone: Subject, eventRegister: threading.Event, config: str = "config.json") -> None:
+    def __init__(self, subjectDone: Subject, eventRegister: threading.Event, display: Display, config: str = "config.json") -> None:
         self.config = config
         self.subjectDone = subjectDone
         self.eventRegister = eventRegister
         self.threadPool = []
+        self.display = display
 
     def _editor(self) -> None:
         editorObject = Editor()
@@ -48,10 +51,11 @@ class ViteraBot:
         thread.start()
 
     def run(self) -> None:
-        self._startThead(self._editor)
-        self._startThead(self._uploader)
-        self._startThead(self._register)
+        self._startThead(target=self._editor)
+        self._startThead(target=self._uploader)
+        self._startThead(target=self._register)
         self._keyboardSetup()
+        self.display.printStart()
 
     def done(self) -> None:
         self.subjectDone.notify("done")

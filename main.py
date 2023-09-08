@@ -1,5 +1,6 @@
 import threading
 from viterabot.viterabot import ViteraBot
+from viterabot.controller.display import Display
 from viterabot.observer.subject import Subject
 
 
@@ -7,7 +8,8 @@ from viterabot.observer.subject import Subject
 CONFIG = "config.json"
 subjectDone = Subject()
 eventRegister = threading.Event()
-v = ViteraBot(subjectDone=subjectDone, eventRegister=eventRegister, config=CONFIG)
+display = Display()
+v = ViteraBot(subjectDone=subjectDone, eventRegister=eventRegister, config=CONFIG, display=display)
 v.run()
 
 try:
