@@ -1,6 +1,6 @@
 import threading
 from viterabot.viterabot import ViteraBot
-from viterabot.controller.display import Display
+from viterabot.model.display import Display
 from viterabot.observer.subject import Subject
 
 

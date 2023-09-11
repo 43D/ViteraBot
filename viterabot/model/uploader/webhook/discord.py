@@ -1,6 +1,6 @@
 
 from discord_webhook import DiscordWebhook, DiscordEmbed
-from viterabot.controller.uploader.iUploader import iUploader
+from viterabot.model.uploader.iUploader import iUploader
 
 class Discord(iUploader):
     def __init__(self, config: dict) -> None:

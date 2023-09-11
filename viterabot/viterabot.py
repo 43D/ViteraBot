@@ -1,12 +1,12 @@
 import keyboard
 import os
 import threading
-from viterabot.controller.display import Display
-from viterabot.controller.editor.editor import Editor
+from viterabot.model.display import Display
+from viterabot.model.editor.editor import Editor
 from viterabot.controller.uploaderManager import UploaderManager
-from viterabot.controller.uploader.webhook.discord import Discord
-from viterabot.controller.uploader.graph.graph import Graph
-from viterabot.controller.uploader.webhook.discord import Discord
+from viterabot.model.uploader.webhook.discord import Discord
+from viterabot.model.uploader.graph.graph import Graph
+from viterabot.model.uploader.webhook.discord import Discord
 from viterabot.controller.registerManager import RegisterManager
 from viterabot.dao.daoConfig import DaoConfig
 from viterabot.observer.observer import Observer

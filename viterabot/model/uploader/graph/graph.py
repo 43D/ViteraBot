@@ -1,5 +1,5 @@
 from pyfacebook import GraphAPI
-from viterabot.controller.uploader.iUploader import iUploader
+from viterabot.model.uploader.iUploader import iUploader
 
 class Graph(iUploader):
     def __init__(self, config: dict) -> None:

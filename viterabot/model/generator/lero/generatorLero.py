@@ -1,7 +1,7 @@
 import random
 from typing import Iterator
 import numpy as np
-from viterabot.controller.generator.iGenerator import iGenerator
+from viterabot.model.generator.iGenerator import iGenerator
 
 class GeneratorLero(iGenerator):
     def __init__(self, filename) -> None:

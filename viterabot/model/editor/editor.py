@@ -1,21 +1,11 @@
 import time
 from viterabot.entity.template import Template
 from viterabot.dao.daoMaster import DaoMaster
-from viterabot.dao.model.modelTemplate import DaoTemplate
 from viterabot.observer.iObserverAction import iObserverAction
 
 class Editor(iObserverAction):
     def __init__(self, ) -> None:
         self.runnig = True
-
-        #exemplo de injeção indem cagada em python
-        path_image = "caminho/para/imagem.jpg"
-        title = "tile www"
-
-        template = Template(id=0, src_path=path_image)
-        dao = DaoMaster()
-        daoTemplate = DaoTemplate(dao)
-        daoTemplate.func_example_save(template)
 
     def run(self) -> None:
         while(self.runnig):

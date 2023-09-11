@@ -1,5 +1,5 @@
 import time
-from viterabot.controller.uploader.iUploader import iUploader
+from viterabot.model.uploader.iUploader import iUploader
 from viterabot.dao.daoConfig import DaoConfig
 from viterabot.observer.iObserverAction import iObserverAction
 
