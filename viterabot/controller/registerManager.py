@@ -1,11 +1,7 @@
-import threading
-import os
 from viterabot.observer.iObserverAction import iObserverAction
 
-
 class RegisterManager(iObserverAction):
-    def __init__(self, eventRegister: threading.Event) -> None:
-        self.eventRegister = eventRegister
+    def __init__(self) -> None:
         self.running = True
         self.command = {
             "done": self.done

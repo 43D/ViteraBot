@@ -12,11 +12,10 @@ from viterabot.observer.subject import Subject
 
 
 class ViteraBot:
-    def __init__(self, subjectDone: Subject, subjectStray: Subject, stray: Stray, eventRegister: threading.Event, config: str = "config.json") -> None:
+    def __init__(self, subjectDone: Subject, subjectStray: Subject, stray: Stray, config: str = "config.json") -> None:
         self.config = config
         self.subjectDone = subjectDone
         self.subjectStray = subjectStray
-        self.eventRegister = eventRegister
         self.threadPool = []
         self.stray = stray
         
@@ -36,7 +35,7 @@ class ViteraBot:
         uploaderObject.runUploader()
 
     def _register(self) -> None:
-        rm = RegisterManager(self.eventRegister)
+        rm = RegisterManager()
         observerRm = Observer(rm)
         self.subjectDone.attach(observerRm)
         self.subjectStray.attach(observerRm)
@@ -54,4 +53,3 @@ class ViteraBot:
 
     def done(self) -> None:
         self.subjectDone.notify("done")
-        self.eventRegister.set()
