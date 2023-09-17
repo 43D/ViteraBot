@@ -1,9 +1,8 @@
 import random
 from typing import Iterator
 import numpy as np
-from viterabot.model.generator.iGenerator import iGenerator
 
-class GeneratorLero(iGenerator):
+class GeneratorLero:
     def __init__(self, filename) -> None:
         self._filename = filename
         self._openFile()

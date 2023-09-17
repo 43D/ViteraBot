@@ -1,6 +1,5 @@
-from abc import ABC, abstractmethod
+from typing import Protocol
 
-class iGenerator(ABC):
-    @abstractmethod
+class iGenerator(Protocol):
     def generateText(self) -> str:
-        pass
+        ...

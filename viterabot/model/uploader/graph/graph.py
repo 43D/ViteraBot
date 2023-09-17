@@ -1,7 +1,6 @@
 from pyfacebook import GraphAPI
-from viterabot.model.uploader.iUploader import iUploader
 
-class Graph(iUploader):
+class Graph:
     def __init__(self, config: dict) -> None:
         self.app_id = config["app_id"]
         self.app_secret = config["app_secret"]

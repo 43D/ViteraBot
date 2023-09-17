@@ -1,6 +1,5 @@
-from abc import ABC, abstractmethod
+from typing import Protocol
 
-class iUploader(ABC):
-    @abstractmethod
+class iUploader(Protocol):
     def uploadImage(self, message: str, filename: str) -> None:
-        pass
+        ...

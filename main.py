@@ -1,20 +1,13 @@
 import threading
 from viterabot.viterabot import ViteraBot
-from viterabot.model.display import Display
+from viterabot.stray.stray import Stray
 from viterabot.observer.subject import Subject
-
 
 
 CONFIG = "config.json"
 subjectDone = Subject()
+subjectStray = Subject()
 eventRegister = threading.Event()
-display = Display()
-v = ViteraBot(subjectDone=subjectDone, eventRegister=eventRegister, config=CONFIG, display=display)
+stray = Stray(subjectStray)
+v = ViteraBot(subjectDone=subjectDone,subjectStray=subjectStray, eventRegister=eventRegister, config=CONFIG, stray=stray)
 v.run()
-
-try:
-    while True:
-        pass
-except KeyboardInterrupt:
-    print("Recebido sinal de interrupção. Parando o programa no proximo clico...")
-    v.done()

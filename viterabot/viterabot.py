@@ -1,8 +1,6 @@
-import keyboard
-import os
 import threading
-from viterabot.model.display import Display
 from viterabot.model.editor.editor import Editor
+from viterabot.stray.stray import Stray
 from viterabot.controller.uploaderManager import UploaderManager
 from viterabot.model.uploader.webhook.discord import Discord
 from viterabot.model.uploader.graph.graph import Graph
@@ -14,13 +12,14 @@ from viterabot.observer.subject import Subject
 
 
 class ViteraBot:
-    def __init__(self, subjectDone: Subject, eventRegister: threading.Event, display: Display, config: str = "config.json") -> None:
+    def __init__(self, subjectDone: Subject, subjectStray: Subject, stray: Stray, eventRegister: threading.Event, config: str = "config.json") -> None:
         self.config = config
         self.subjectDone = subjectDone
+        self.subjectStray = subjectStray
         self.eventRegister = eventRegister
         self.threadPool = []
-        self.display = display
-
+        self.stray = stray
+        
     def _editor(self) -> None:
         editorObject = Editor()
         observerEditor = Observer(editorObject)
@@ -40,10 +39,7 @@ class ViteraBot:
         rm = RegisterManager(self.eventRegister)
         observerRm = Observer(rm)
         self.subjectDone.attach(observerRm)
-        rm.runRegister()
-    
-    def _keyboardSetup(self):
-        keyboard.on_press_key("p", lambda _:self.eventRegister.set())
+        self.subjectStray.attach(observerRm)
 
     def _startThead(self, target=None, args=()) -> None:
         thread = threading.Thread(target=target, args=args)
@@ -54,10 +50,8 @@ class ViteraBot:
         self._startThead(target=self._editor)
         self._startThead(target=self._uploader)
         self._startThead(target=self._register)
-        self._keyboardSetup()
-        self.display.printStart()
+        self.stray.run(close=self.done)
 
     def done(self) -> None:
         self.subjectDone.notify("done")
         self.eventRegister.set()
-
