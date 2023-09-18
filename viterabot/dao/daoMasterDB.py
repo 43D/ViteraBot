@@ -41,11 +41,9 @@ class CreateTable:
                 id INTEGER PRIMARY KEY,
                 x_start REAL,
                 y_start REAL,
-                x_end REAL,
-                y_end REAL,
-                tilt REAL,
-                rotation REAL,
-                type TEXT
+                x_size REAL,
+                y_size REAL,
+                rotation REAL
             )
         ''')
 
@@ -56,6 +54,29 @@ class CreateTable:
                 id_coordinate INTEGER,
                 FOREIGN KEY (id_template) REFERENCES template (id),
                 FOREIGN KEY (id_coordinate) REFERENCES coordinates (id)
+            )
+        ''')
+
+        # Crie a tabela 'mask'
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS mask (
+                id INTEGER PRIMARY KEY,
+                src_path TEXT,
+                x_start REAL,
+                y_start REAL,
+                x_size REAL,
+                y_size REAL,
+                rotation REAL
+            )
+        ''')
+
+        # Crie a tabela 'mask_to_template' com chaves estrangeiras
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS mask_to_template (
+                id_template INTEGER,
+                id_mask INTEGER,
+                FOREIGN KEY (id_template) REFERENCES template (id),
+                FOREIGN KEY (id_mask) REFERENCES mask (id)
             )
         ''')
 

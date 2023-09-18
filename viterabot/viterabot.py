@@ -38,7 +38,7 @@ class ViteraBot:
         uploaderObject = UploaderManager(self.daoFiles, graph, discord)
         observerUp = Observer(uploaderObject)
         self.subjectDone.attach(observerUp)
-        uploaderObject.runUploader()
+        uploaderObject.run()
 
     def _register(self) -> None:
         rm = RegisterManager()

@@ -11,7 +11,7 @@ class UploaderManager(iObserverAction):
         self.discord = discord
         self._resetCount()
 
-    def _resetCount(self):
+    def _resetCount(self) -> None:
         self.count = 60*60
 
     def _getNextPost(self) -> None:
@@ -22,7 +22,7 @@ class UploaderManager(iObserverAction):
         self.graph.uploadImage(message, filename)
         self.discord.uploadImage(message, filename)
 
-    def runUploader(self) -> None:
+    def run(self) -> None:
         while self.running:
             time.sleep(1)
             self.count-=1

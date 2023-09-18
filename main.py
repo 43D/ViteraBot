@@ -6,6 +6,7 @@ from viterabot.observer.subject import Subject
 CONFIG = "src\\config.json"
 FOLDERS = [
     "src\\database\\image",
+    "src\\database\\mask",
     "src\\database\\repository",
     "src\\database\\template"
 ]

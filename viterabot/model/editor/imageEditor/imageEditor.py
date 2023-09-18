@@ -1,33 +1,45 @@
 from PIL import Image
+from viterabot.entity.image import Image as im
 
 class ImageEditor:
     def __init__(self) -> None:
-        pass
+        self.pool = []
 
-    def edit(self, date: dict) -> None:
-        pass
+    def _setTemplate(self, file) -> None:
+        self.template = Image.open(file)
+        self.template = self.template.convert("RGBA")
 
+    def _editOverlay(self, data)-> None:
+        for image in data:
+            overlay = Image.open(image["repository"].src_path)
+            overlay = overlay.convert("RGBA")
+            overlay = overlay.resize((image["coordinates"].x_size, image["coordinates"].y_size))
+            overlay = overlay.rotate(image["coordinates"].rotation, expand=True)
+            self.template.alpha_composite(overlay, (image["coordinates"].x_start, image["coordinates"].y_start))
+            self.pool.append(overlay)
 
+    def _editMAsk(self, data)-> None:
+        for image in data:
+            mask = Image.open(image["coordinates"].src_path)
+            mask = mask.convert("RGBA")
+            mask = mask.resize((image["coordinates"].x_size, image["coordinates"].y_size))
+            mask= mask.rotate(image["coordinates"].rotation, expand=True)
+            self.template.alpha_composite(mask, (image["coordinates"].x_start, image["coordinates"].y_start))
+            self.pool.append(mask)
+        
+    def _save(self, path: str):
+        self.template.save(path)
 
-    def _test(self):
-        # Abra a imagem principal em que você deseja colocar a outra imagem
-        imagem_principal = Image.open("imagem_principal.jpg")
+    def edit(self, data: dict) -> im:
+        self._setTemplate(data["template"].src_path)
+        self._editOverlay(data["imageLuck"])
+        self._editMAsk(data["mask"])
+        self.pool.append(self.template)
+        img = im(src_path="imagem_final.png", hashImage=data["hashImage"], title="", id=0)
+        self._save(img.src_path)
+        self._done()
+        return img
 
-        # Abra a imagem que você deseja colocar por cima da imagem principal
-        imagem_overlay = Image.open("imagem_overlay.png")
-
-        # Verifique o tamanho da imagem principal
-        largura_principal, altura_principal = imagem_principal.size
-
-        # Redimensione a imagem overlay para que ela tenha o mesmo tamanho da imagem principal
-        imagem_overlay = imagem_overlay.resize((largura_principal, altura_principal))
-
-        # Coloque a imagem overlay na imagem principal
-        imagem_final = Image.alpha_composite(imagem_principal.convert("RGBA"), imagem_overlay.convert("RGBA"))
-
-        # Salve a imagem final
-        imagem_final.save("imagem_final.png")
-
-        # Feche as imagens
-        imagem_principal.close()
-        imagem_overlay.close()
+    def _done(self):
+        for i in self.pool:
+            i.close()
