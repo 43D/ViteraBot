@@ -12,7 +12,7 @@ from viterabot.observer.subject import Subject
 
 
 class ViteraBot:
-    def __init__(self, subjectDone: Subject, subjectStray: Subject, stray: Stray, config: str = "config.json") -> None:
+    def __init__(self, subjectDone: Subject, subjectStray: Subject, stray: Stray, config: str = "src\\config.json") -> None:
         self.config = config
         self.subjectDone = subjectDone
         self.subjectStray = subjectStray

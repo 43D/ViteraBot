@@ -3,7 +3,7 @@ from viterabot.stray.stray import Stray
 from viterabot.observer.subject import Subject
 
 
-CONFIG = "config.json"
+CONFIG = "src\\config.json"
 subjectDone = Subject()
 subjectStray = Subject()
 stray = Stray(subjectStray)
