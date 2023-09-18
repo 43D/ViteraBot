@@ -2,7 +2,7 @@ import sqlite3
 
 class DaoMaster:
     def __init__(self) -> None:
-        self.db = "viteiraBot.db"
+        self.db = "src\\viteiraBot.db"
         self.conn = sqlite3.connect(self.db)
         self.cursor = self.conn.cursor()
         self._create_tables()

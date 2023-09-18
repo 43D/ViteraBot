@@ -46,7 +46,7 @@ class Stray:
         self.icon.update_menu()
 
     def _create_tray_icon(self) -> None:
-        image = Image.open("logo.png")
+        image = Image.open("src\\logo.png")
         self.icon = pystray.Icon("name", image, menu=self.menu)
     
     def run(self, close: object = None) -> None:
