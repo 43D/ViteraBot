@@ -1,11 +1,11 @@
 import time
 from viterabot.model.uploader.iUploader import iUploader
-from viterabot.dao.daoConfig import DaoConfig
+from viterabot.dao.daoFiles import DaoFiles
 from viterabot.observer.iObserverAction import iObserverAction
 
 class UploaderManager(iObserverAction):
-    def __init__(self, dao: DaoConfig, graph: iUploader, discord: iUploader) -> None:
-        self.daoConfig = dao
+    def __init__(self, dao: DaoFiles, graph: iUploader, discord: iUploader) -> None:
+        self.daoFiles = dao
         self.graph = graph
         self.discord = discord
         self.time = 1

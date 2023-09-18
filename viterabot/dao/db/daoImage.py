@@ -1,4 +1,4 @@
-from viterabot.dao.daoMaster import DaoMaster
+from viterabot.dao.daoMasterDB import DaoMaster
 from viterabot.entity.image import Image
 
 class DaoImage:

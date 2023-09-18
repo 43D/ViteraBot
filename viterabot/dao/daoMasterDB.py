@@ -1,6 +1,6 @@
 import sqlite3
 
-class DaoMaster:
+class DaoMasterDB:
     def __init__(self) -> None:
         self.db = "src\\viteiraBot.db"
         self.conn = sqlite3.connect(self.db)
@@ -21,7 +21,7 @@ class DaoMaster:
         self.conn.close()
     
 class CreateTable:
-    def __init__(self, dao: DaoMaster) -> None:
+    def __init__(self, dao: DaoMasterDB) -> None:
         self.conn = dao.getConn()
         self.cursor = dao.getCursor()
         self._execute()

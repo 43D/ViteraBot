@@ -1,7 +1,7 @@
 import os
 import json
 
-class DaoConfig:
+class DaoFiles:
     def __init__(self, CONFIG: str, folders: [str]) -> None:
         self.CONFIG = CONFIG
         self.folders = folders

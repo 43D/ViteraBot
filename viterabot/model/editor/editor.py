@@ -1,6 +1,4 @@
 import time
-from viterabot.entity.template import Template
-from viterabot.dao.daoMaster import DaoMaster
 from viterabot.observer.iObserverAction import iObserverAction
 
 class Editor(iObserverAction):

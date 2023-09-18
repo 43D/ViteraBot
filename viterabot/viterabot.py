@@ -6,7 +6,7 @@ from viterabot.model.uploader.webhook.discord import Discord
 from viterabot.model.uploader.graph.graph import Graph
 from viterabot.model.uploader.webhook.discord import Discord
 from viterabot.controller.registerManager import RegisterManager
-from viterabot.dao.daoConfig import DaoConfig
+from viterabot.dao.daoFiles import DaoFiles
 from viterabot.observer.observer import Observer
 from viterabot.observer.subject import Subject
 
@@ -15,7 +15,7 @@ class ViteraBot:
     def __init__(self, subjectDone: Subject, subjectStray: Subject, stray: Stray, folders: [str] = ["src"], config: str = "src\\config.json") -> None:
         self.config = config
         self.folders = folders
-        self.daoConfig = DaoConfig(self.config, self.folders)
+        self.daoFiles = DaoFiles(self.config, self.folders)
         self.subjectDone = subjectDone
         self.subjectStray = subjectStray
         self.threadPool = []
@@ -28,9 +28,9 @@ class ViteraBot:
         editorObject.run()
         
     def _uploader(self) -> None:
-        graph = Graph(self.daoConfig.getConfig())
-        discord = Discord(self.daoConfig.getConfig())
-        uploaderObject = UploaderManager(self.daoConfig, graph, discord)
+        graph = Graph(self.daoFiles.getConfig())
+        discord = Discord(self.daoFiles.getConfig())
+        uploaderObject = UploaderManager(self.daoFiles, graph, discord)
         observerUp = Observer(uploaderObject)
         self.subjectDone.attach(observerUp)
         uploaderObject.runUploader()
