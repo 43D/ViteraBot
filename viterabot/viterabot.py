@@ -1,11 +1,13 @@
 import threading
-from viterabot.model.editor.editor import Editor
+
 from viterabot.stray.stray import Stray
 from viterabot.controller.uploaderManager import UploaderManager
+from viterabot.controller.generatorManager import GeneratorManager
+from viterabot.controller.registerManager import RegisterManager
 from viterabot.model.uploader.webhook.discord import Discord
 from viterabot.model.uploader.graph.graph import Graph
 from viterabot.model.uploader.webhook.discord import Discord
-from viterabot.controller.registerManager import RegisterManager
+from viterabot.model.editor.imageEditor.imageEditor import ImageEditor
 from viterabot.dao.daoFiles import DaoFiles
 from viterabot.observer.observer import Observer
 from viterabot.observer.subject import Subject
@@ -22,7 +24,10 @@ class ViteraBot:
         self.stray = stray
         
     def _editor(self) -> None:
-        editorObject = Editor()
+        event = threading.Event
+        imageGenerator = ImageEditor()
+        imageEditor = ImageEditor()
+        editorObject = GeneratorManager(editor=imageEditor, imageGenerator=imageGenerator)
         observerEditor = Observer(editorObject)
         self.subjectDone.attach(observerEditor)
         editorObject.run()

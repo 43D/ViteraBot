@@ -1,4 +1,5 @@
 python-facebook-api
 discord-webhook
 numpy
-keyboard
+pystray
+Pillow

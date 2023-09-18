@@ -32,7 +32,7 @@ class GeneratorLero:
             firstWord = np.random.choice(self._corpus)
         return firstWord
 
-    def generateText(self) -> str:
+    def generate(self) -> str:
         numbersWords = random.choice( range(14, 28) )
         text = [self._firstWord()]
 

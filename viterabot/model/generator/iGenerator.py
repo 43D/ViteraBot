@@ -1,5 +1,5 @@
 from typing import Protocol
 
 class iGenerator(Protocol):
-    def generateText(self) -> str:
+    def generate(self) -> str:
         ...
