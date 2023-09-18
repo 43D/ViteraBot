@@ -2,12 +2,13 @@ import os
 import json
 
 class DaoConfig:
-    def __init__(self, CONFIG: str) -> None:
+    def __init__(self, CONFIG: str, folders: [str]) -> None:
         self.CONFIG = CONFIG
+        self.folders = folders
         self._folder()
         
     def _checkConfig(self) -> None:
-        if not os.path.exists('config.json'):
+        if not os.path.exists(self.CONFIG):
             config_data = {
                 "app_id":"",
                 "app_secret":"",
@@ -15,13 +16,17 @@ class DaoConfig:
                 "time_post": 180,
                 "discord_webhook":""
             }
-            with open('config.json', 'w') as config_file:
+            with open(self.CONFIG, 'w') as config_file:
                 json.dump(config_data, config_file, indent=4)
+
+    def _createFolder(self, folder : str) -> None:
+        if not os.path.exists(folder):
+            os.makedirs(folder)
 
     def _folder(self) -> None:
         self._checkConfig()
-        #check folder exits
-        #check and save database folders local
+        for item in self.folders:
+            self._createFolder(item)
 
     def getConfig(self) -> dict:
         try:

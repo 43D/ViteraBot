@@ -12,8 +12,10 @@ from viterabot.observer.subject import Subject
 
 
 class ViteraBot:
-    def __init__(self, subjectDone: Subject, subjectStray: Subject, stray: Stray, config: str = "src\\config.json") -> None:
+    def __init__(self, subjectDone: Subject, subjectStray: Subject, stray: Stray, folders: [str] = ["src"], config: str = "src\\config.json") -> None:
         self.config = config
+        self.folders = folders
+        self.daoConfig = DaoConfig(self.config, self.folders)
         self.subjectDone = subjectDone
         self.subjectStray = subjectStray
         self.threadPool = []
@@ -26,10 +28,9 @@ class ViteraBot:
         editorObject.run()
         
     def _uploader(self) -> None:
-        daoConfig = DaoConfig(self.config)
-        graph = Graph(daoConfig.getConfig())
-        discord = Discord(daoConfig.getConfig())
-        uploaderObject = UploaderManager(daoConfig, graph, discord)
+        graph = Graph(self.daoConfig.getConfig())
+        discord = Discord(self.daoConfig.getConfig())
+        uploaderObject = UploaderManager(self.daoConfig, graph, discord)
         observerUp = Observer(uploaderObject)
         self.subjectDone.attach(observerUp)
         uploaderObject.runUploader()
