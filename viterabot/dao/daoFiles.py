@@ -24,9 +24,9 @@ class DaoFiles:
             os.makedirs(folder)
 
     def _folder(self) -> None:
-        self._checkConfig()
         for item in self.folders:
             self._createFolder(item)
+        self._checkConfig()
 
     def getConfig(self) -> dict:
         try:
